@@ -1,0 +1,38 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+      {% block product_detail %}
+      <div class="container mt-4">
+          <h1>{{ product.name }}</h1>
+          <img src="{{ product.image.url }}" alt="{{ product.name }}" style="max-width: 300px;">
+          <p>Giá: ${{ product.price }}</p>
+          <p>{% if product.digital %}Sản phẩm số{% else %}Sản phẩm vật lý{% endif %}</p>
+      
+          <h2>Thông số kỹ thuật PC</h2>
+          {% if pc_detail %}
+              <p>Bộ xử lý: {{ pc_detail.processor }}</p>
+              <p>RAM: {{ pc_detail.ram }}</p>
+              <p>Bộ nhớ: {{ pc_detail.storage }}</p>
+              <p>Card đồ họa: {{ pc_detail.graphics_card }}</p>
+              <p>Hệ điều hành: {{ pc_detail.operating_system }}</p>
+              <p>Bảo hành: {{ pc_detail.warranty }} tháng</p>
+          {% else %}
+              <p>Sản phẩm này chưa có thông số kỹ thuật chi tiết.</p>
+          {% endif %}
+      </div>
+      
+          {% endblock product_detail %}
+    
+    </body>
+</html>

@@ -1,0 +1,39 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+   
+      {% block search %}
+        <h5>Trả về kết quả tìm kiếm: {{ searched }}</h5>
+  
+        <div class="container1">
+          {%for product in keys %}
+          {% csrf_token %}
+          <div class="item1" data-manufacturer="{{ product.manufacturer }}">
+            <img class ="thumbnail" src ="{{product.image.url}}" >
+          <br>
+            <div class="box-element product">
+              <h6><strong>{{product.name}}</strong><h6>
+         
+              <button data-product={{product.id}} data-action = "add" class ="btn btn-outline-secondary add-btn update-cart">Them vao gio hang</button>
+              <a class ="btn btn-outline-success" href="#">Xem</a>
+              <h3 style ="display: inline-block; float: center"><strong>{{product.price}}</strong></h3>
+            </div>
+          </div>
+          {%endfor%}
+        </div>
+        
+      {% endblock %}
+    
+    </body>
+</html>
